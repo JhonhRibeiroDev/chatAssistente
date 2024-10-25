@@ -1,0 +1,98 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef; /* Cor de fundo da página */
+    margin: 0;
+    padding: 0; /* Remover padding do body */
+    display: flex; /* Usar flexbox para centralizar */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Altura total da viewport */
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    max-width: 100%; /* Garante que o container não ultrapasse a largura da tela */
+    border: none; /* Remover borda */
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #ffffff; /* Cor de fundo do container */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+    border-radius: 10px; /* Bordas mais arredondadas */
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 400px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none; /* Remover borda */
+    border-radius: 5px;
+    background-color: #f8f9fa; /* Fundo das mensagens */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra interna suave */
+}
+
+.message {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    line-height: 1.5; /* Espaçamento entre linhas */
+    max-width: 80%; /* Largura máxima das mensagens */
+    position: relative; /* Para usar com pseudo-elementos */
+}
+
+.user {
+    background-color: #d1e7dd; /* Verde suave para mensagens do usuário */
+    align-self: flex-end;
+    text-align: right; /* Alinhamento à direita */
+    border-radius: 10px 10px 0 10px; /* Arredondar apenas os cantos superiores */
+}
+
+.bot {
+    background-color: #f8d7da; /* Vermelho suave para mensagens do bot */
+    align-self: flex-start;
+    text-align: left; /* Alinhamento à esquerda */
+    border-radius: 10px 10px 0 10px; /* Arredondar apenas os cantos superiores */
+}
+
+.input-container {
+    display: flex;
+    margin-top: 10px; /* Espaçamento superior */
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ced4da; /* Bordas mais suaves */
+    border-radius: 5px;
+    font-size: 16px; /* Aumenta a fonte do input */
+    transition: border-color 0.3s; /* Transição suave para a borda */
+}
+
+input:focus {
+    border-color: #007bff; /* Mudança de cor ao focar */
+    outline: none; /* Remove o contorno padrão */
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007bff; /* Azul padrão */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; /* Espaçamento à esquerda do botão */
+    font-size: 16px; /* Aumenta a fonte do botão */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave ao passar o mouse */
+}
+
+button:hover {
+    background-color: #0056b3; /* Azul mais escuro no hover */
+    transform: translateY(-2px); /* Leve elevação ao passar o mouse */
+}
+
+button:active {
+    transform: translateY(0); /* Retorna à posição original quando pressionado */
+}
