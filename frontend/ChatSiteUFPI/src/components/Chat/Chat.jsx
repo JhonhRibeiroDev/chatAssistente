@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import './Chat.css'; // Estilos do componente
 
 const Chat = () => {
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
+    const messagesEndRef = useRef(null); // Ref para o final da lista de mensagens
 
     const handleSend = async () => {
         if (!input) return;
@@ -43,6 +44,18 @@ const Chat = () => {
         await fetchResponse(input);
     };
 
+    // Efeito para rolar até a última mensagem
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]); // Dependência em messages para rolar sempre que mudar
+
+    // Função para lidar com a tecla pressionada
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSend(); // Chama a função de enviar mensagem
+        }
+    };
+
     return (
         <div className="chat-container">
             <div className="messages">
@@ -52,12 +65,14 @@ const Chat = () => {
                         {msg.text}
                     </div>
                 ))}
+                <div ref={messagesEndRef} /> {/* Referência para o final das mensagens */}
             </div>
             <div className="input-container">
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown} // Adiciona o evento onKeyDown
                     placeholder="Digite sua dúvida..."
                 />
                 <button onClick={handleSend}>Enviar</button>
