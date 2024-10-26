@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import './Chat.css'; // Estilos do componente
@@ -5,6 +6,7 @@ import './Chat.css'; // Estilos do componente
 const Chat = () => {
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(false); // Estado para o carregamento
     const messagesEndRef = useRef(null); // Ref para o final da lista de mensagens
 
     const handleSend = async () => {
@@ -13,46 +15,41 @@ const Chat = () => {
         const newMessage = { text: input, sender: 'user' };
         setMessages((prevMessages) => [...prevMessages, newMessage]);
         setInput('');
+        setLoading(true); // Inicia o estado de carregamento
 
-        // Função para chamar a API do backend
         const fetchResponse = async (prompt) => {
             try {
                 const response = await axios.post('http://localhost:3000/generate', { prompt });
 
-                // Log para verificar a estrutura da resposta
                 console.log('Resposta da API:', response.data);
 
-                // Acessando a resposta da API
-                const { candidates } = response.data; // Acessa o array de candidates
-
+                const { candidates } = response.data;
                 if (candidates && candidates.length > 0) {
                     const botMessage = { text: candidates[0].content.parts[0].text, sender: 'bot' };
                     setMessages((prevMessages) => [...prevMessages, botMessage]);
                 } else {
-                    // Mensagem padrão se a resposta não estiver conforme o esperado
-                    const errorMessage = { text: "Desculpe, não consegui entender a resposta.", sender: 'bot' };
+                    const errorMessage = { text: "Desculpe, não consegui entender a resposta.", sender: 'Dexter' };
                     setMessages((prevMessages) => [...prevMessages, errorMessage]);
                 }
             } catch (error) {
                 console.error('Erro ao enviar a mensagem:', error);
                 const errorMessage = { text: "Erro ao se comunicar com o servidor.", sender: 'bot' };
                 setMessages((prevMessages) => [...prevMessages, errorMessage]);
+            } finally {
+                setLoading(false); // Finaliza o estado de carregamento
             }
         };
 
-        // Chama a função para obter a resposta do assistente
         await fetchResponse(input);
     };
 
-    // Efeito para rolar até a última mensagem
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages]); // Dependência em messages para rolar sempre que mudar
+    }, [messages]);
 
-    // Função para lidar com a tecla pressionada
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            handleSend(); // Chama a função de enviar mensagem
+            handleSend();
         }
     };
 
@@ -61,18 +58,23 @@ const Chat = () => {
             <div className="messages">
                 {messages.map((msg, index) => (
                     <div key={index} className={`message ${msg.sender}`}>
-                        <span>{msg.sender === 'user' ? 'Você:' : 'Bot:'} </span>
+                        <span>{msg.sender === 'user' ? 'Você:' : 'Dexter:'} </span>
                         {msg.text}
                     </div>
                 ))}
-                <div ref={messagesEndRef} /> {/* Referência para o final das mensagens */}
+                {loading && ( // Exibe o loader enquanto estiver carregando
+                    <div className="message bot loading">
+                        <span>Dexter: </span>Carregando...
+                    </div>
+                )}
+                <div ref={messagesEndRef} />
             </div>
             <div className="input-container">
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={handleKeyDown} // Adiciona o evento onKeyDown
+                    onKeyDown={handleKeyDown}
                     placeholder="Digite sua dúvida..."
                 />
                 <button onClick={handleSend}>Enviar</button>

@@ -14,7 +14,7 @@ body {
 .chat-container {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 700px;
     max-width: 100%; /* Garante que o container não ultrapasse a largura da tela */
     border: none; /* Remover borda */
     border-radius: 8px;
@@ -23,8 +23,9 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
 }
 
-.messages {
-    flex: 1;
+.messages { 
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
     max-height: 300px; /* Ajuste a altura se necessário */
     padding: 10px;
@@ -39,6 +40,7 @@ body {
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
+    width: 100%;
     line-height: 1.5; /* Espaçamento entre linhas */
     max-width: 80%; /* Largura máxima das mensagens */
     position: relative; /* Para usar com pseudo-elementos */
@@ -51,7 +53,10 @@ body {
     text-align: right; /* Alinhamento à direita */
     border-radius: 10px 10px 0 10px; /* Arredondar apenas os cantos superiores */
 }
-
+.user span, .bot span{
+    color: #3b3b3b;
+    font-weight: bolder;
+}
 .bot {
     background-color: #f8d7da; /* Vermelho suave para mensagens do bot */
     align-self: flex-start;
@@ -71,6 +76,8 @@ input {
     border-radius: 5px;
     font-size: 16px; /* Aumenta a fonte do input */
     transition: border-color 0.3s; /* Transição suave para a borda */
+    background-color: rgb(241, 241, 241);
+    color: rgb(17, 17, 17);
 }
 
 input:focus {

@@ -1,4 +1,4 @@
-
+//lixo
 // Definindo um roteiro como contexto
 const context = `Responda com base no roteiro abaixo:
 Você é um assistente de histórias. Responda sempre com base em um enredo de aventura mágica.
