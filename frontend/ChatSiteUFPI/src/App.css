@@ -1,4 +1,4 @@
-/* App.css */
+/* Estilos globais */
 body {
   margin: 0;
   padding: 0;
@@ -7,6 +7,7 @@ body {
   color: #333;
 }
 
+/* Container principal */
 .app {
   display: flex;
   flex-direction: column;
@@ -14,6 +15,7 @@ body {
   min-width: 100vw;
 }
 
+/* Cabeçalho */
 .header {
   text-align: center;
   padding: 20px;
@@ -31,6 +33,7 @@ body {
   font-size: 1.1rem;
 }
 
+/* Conteúdo principal */
 .main-content {
   flex: 1;
   display: flex;
@@ -39,6 +42,7 @@ body {
   padding: 20px;
 }
 
+/* Container interno */
 .container {
   max-width: 800px;
   width: 100%;
@@ -48,6 +52,7 @@ body {
   border-radius: 10px;
 }
 
+/* Rodapé */
 .footer {
   text-align: center;
   padding: 10px;
@@ -56,6 +61,7 @@ body {
   font-size: 0.9rem;
 }
 
+/* Animação de carregamento */
 .loading {
   font-style: italic;
   color: #999;
@@ -71,3 +77,50 @@ body {
   }
 }
 
+/* Media Query: Ajustes para telas menores */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .header p {
+    font-size: 1rem;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 15px;
+  }
+  .app{
+    justify-content: center;
+  }
+
+  .header h1 {
+    font-size: 1.2rem;
+  }
+
+  .header p {
+    display: none;
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    display: none;
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .container {
+    padding: 10px;
+    border-radius: 5px;
+  }
+}
