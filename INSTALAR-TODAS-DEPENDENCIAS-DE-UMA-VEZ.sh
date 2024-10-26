@@ -10,11 +10,12 @@ cd ../../backend && npm install
 
 # Iniciando o backend em um novo terminal
 echo "Iniciando o backend..."
-gnome-terminal -- bash -c "node server.js; exec bash"
+xterm -e "node server.js; exec bash" &
+
 
 # Iniciando o frontend
 echo "Iniciando o frontend..."
-cd ../../frontend/ChatSiteUFPI && npm run dev &
+cd ../frontend/ChatSiteUFPI && npm run dev &
 
 # Atraso para garantir que o frontend esteja rodando
 sleep 5
