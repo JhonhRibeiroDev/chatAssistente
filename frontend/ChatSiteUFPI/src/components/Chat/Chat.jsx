@@ -19,7 +19,7 @@ const Chat = () => {
 
         const fetchResponse = async (prompt) => {
             try {
-                const response = await axios.post('http://localhost:3000/generate', { prompt });
+                const response = await axios.post('https://chatbackend.fly.dev/generate', { prompt });
 
                 console.log('Resposta da API:', response.data);
 
