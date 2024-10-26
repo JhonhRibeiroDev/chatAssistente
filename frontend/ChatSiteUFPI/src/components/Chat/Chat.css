@@ -1,107 +1,146 @@
+/* Estilos gerais */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e9ecef; /* Cor de fundo da página */
+    background-color: #e9ecef;
     margin: 0;
     padding: 0;
-    display: flex; /* Usar flexbox para centralizar */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    height: 100vh; /* Altura total da viewport */
-    color: #333; /* Cor do texto mais escura para melhor contraste */
-    font-size: 16px; /* Aumenta o tamanho da fonte */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+    font-size: 16px;
 }
 
+/* Container do chat */
 .chat-container {
     display: flex;
     flex-direction: column;
     width: 700px;
-    max-width: 100%; /* Garante que o container não ultrapasse a largura da tela */
-    border: none; /* Remover borda */
+    max-width: 100%; /* Garante que não ultrapasse a largura da tela */
     border-radius: 8px;
     padding: 10px;
-    background-color: #ffffff; /* Cor de fundo do container */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.messages { 
+/* Corpo das mensagens */
+.messages {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    max-height: 300px; /* Ajuste a altura se necessário */
+    max-height: 300px;
     padding: 10px;
-    border: none; /* Remover borda */
     border-radius: 5px;
-    background-color: #f8f9fa; /* Fundo das mensagens */
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra interna suave */
-    scroll-behavior: smooth; /* Adiciona um efeito de rolagem suave */
+    background-color: #f8f9fa;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    scroll-behavior: smooth;
 }
 
+/* Estilo das mensagens */
 .message {
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
     width: 100%;
-    line-height: 1.5; /* Espaçamento entre linhas */
-    max-width: 80%; /* Largura máxima das mensagens */
-    position: relative; /* Para usar com pseudo-elementos */
-    font-size: 14px; /* Tamanho da fonte das mensagens */
+    line-height: 1.5;
+    max-width: 80%;
+    position: relative;
+    font-size: 14px;
 }
 
 .user {
-    background-color: #d1e7dd; /* Verde suave para mensagens do usuário */
+    background-color: #d1e7dd;
     align-self: flex-end;
-    text-align: right; /* Alinhamento à direita */
-    border-radius: 10px 10px 0 10px; /* Arredondar apenas os cantos superiores */
+    text-align: right;
+    border-radius: 10px 10px 0 10px;
 }
-.user span, .bot span{
+
+.bot {
+    background-color: #f8d7da;
+    align-self: flex-start;
+    text-align: left;
+    border-radius: 10px 10px 0 10px;
+}
+
+.user span, .bot span {
     color: #3b3b3b;
     font-weight: bolder;
 }
-.bot {
-    background-color: #f8d7da; /* Vermelho suave para mensagens do bot */
-    align-self: flex-start;
-    text-align: left; /* Alinhamento à esquerda */
-    border-radius: 10px 10px 0 10px; /* Arredondar apenas os cantos superiores */
-}
 
+/* Container de entrada */
 .input-container {
     display: flex;
-    margin-top: 10px; /* Espaçamento superior */
+    margin-top: 10px;
 }
 
 input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ced4da; /* Bordas mais suaves */
+    border: 1px solid #ced4da;
     border-radius: 5px;
-    font-size: 16px; /* Aumenta a fonte do input */
-    transition: border-color 0.3s; /* Transição suave para a borda */
+    font-size: 16px;
+    transition: border-color 0.3s;
     background-color: rgb(241, 241, 241);
     color: rgb(17, 17, 17);
 }
 
 input:focus {
-    border-color: #007bff; /* Mudança de cor ao focar */
-    outline: none; /* Remove o contorno padrão */
+    border-color: #007bff;
+    outline: none;
 }
 
 button {
     padding: 10px 15px;
     border: none;
-    background-color: #007bff; /* Azul padrão */
+    background-color: #007bff;
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 10px; /* Espaçamento à esquerda do botão */
-    font-size: 16px; /* Aumenta a fonte do botão */
-    transition: background-color 0.3s, transform 0.2s; /* Transição suave ao passar o mouse */
+    margin-left: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background-color: #0056b3; /* Azul mais escuro no hover */
-    transform: translateY(-2px); /* Leve elevação ao passar o mouse */
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 button:active {
-    transform: translateY(0); /* Retorna à posição original quando pressionado */
+    transform: translateY(0);
+}
+
+/* Media Query para telas menores (celulares) */
+@media (max-width: 600px) {
+    .chat-container {
+        width: 100%;  /* Ocupa toda a largura da tela */
+        max-width: 100%;  /* Garante que não tenha margens laterais */
+        border-radius: 0;  /* Remove as bordas arredondadas */
+        height: 100vh;  /* Usa a altura total da tela */
+    }
+
+    .messages {
+        max-height: 60vh;  /* Limita a altura das mensagens em celular */
+    }
+    .chat-container{
+        height: 70vh;
+        justify-content: center;
+    }
+    .message {
+        font-size: 13px;  /* Reduz levemente o tamanho da fonte */
+    }
+
+    .input-container {
+        flex-direction: column;  /* Empilha input e botão */
+    }
+
+    input {
+        margin-bottom: 10px;  /* Espaço entre input e botão */
+    }
+
+    button {
+        width: 100%;  /* Botão ocupa toda a largura */
+        margin-left: 0;  /* Remove margem lateral */
+    }
 }
